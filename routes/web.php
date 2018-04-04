@@ -12,5 +12,9 @@
 */
 
 $router->get('/', function () {
-    return view('index', ['name' => 'James']);
+    return view('home');
 });
+
+$router->get('/domains/{id}', ['as' => 'domains', 'uses' => 'UserController@show']);
+
+$router->post('/domains', 'UserController@create');

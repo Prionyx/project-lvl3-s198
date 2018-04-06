@@ -17,6 +17,13 @@ class UserTest extends TestCase
         $this->assertEquals(200, $response->status());
     }
 
+    public function testDomains()
+    {
+        $response = $this->call('GET', '/');
+
+        $this->assertEquals(200, $response->status());
+    }
+
     public function testCreate()
     {
         $this->post('/domains', ['url' => 'http://google.com/']);

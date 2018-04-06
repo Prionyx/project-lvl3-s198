@@ -11,10 +11,12 @@
 |
 */
 
-$router->get('/', function () {
+$router->get('/', ['as' => 'home', function () {
     return view('home');
-});
+}]);
 
-$router->get('/domains/{id}', ['as' => 'domains', 'uses' => 'UserController@show']);
+$router->get('/domains/{id}', ['as' => 'domain', 'uses' => 'UserController@showNew']);
 
-$router->post('/domains', 'UserController@create');
+$router->get('/domains', ['as' => 'domains', 'uses' => 'UserController@show']);
+
+$router->post('/domains', ['as' => 'domains', 'uses' => 'UserController@create']);

@@ -8,10 +8,17 @@ use Validator;
 
 class UserController extends Controller
 {
-    public function show($id)
+    public function showNew($id)
     {
         $domain = DB::table('domains')->where('id', $id)->first();
-        return view('domains', ['domain' => $domain]);
+        return view('domain', ['domain' => $domain]);
+    }
+
+    public function show()
+    {
+        $domains = DB::table('domains')->paginate(10);
+
+        return view('domains', ['domains' => $domains]);
     }
 
     public function create(Request $request)
@@ -25,6 +32,6 @@ class UserController extends Controller
         $id = DB::table('domains')->insertGetId(
             ['name' => $url, 'updated_at' => $time, 'created_at' => $time]
         );
-        return redirect()->route('domains', ['id' => $id]);
+        return redirect()->route('domain', ['id' => $id]);
     }
 }

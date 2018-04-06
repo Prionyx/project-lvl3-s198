@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Validator;
 
-class UserController extends Controller
+class DomainController extends Controller
 {
     public function showHome()
     {
@@ -19,7 +19,7 @@ class UserController extends Controller
         return view('domain', ['domain' => $domain]);
     }
 
-    public function show()
+    public function showAll()
     {
         $domains = DB::table('domains')->paginate(5);
 

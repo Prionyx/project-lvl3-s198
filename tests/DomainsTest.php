@@ -3,7 +3,7 @@
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
-class UserTest extends TestCase
+class DomainsTest extends TestCase
 {
 
     use DatabaseMigrations, DatabaseTransactions;
@@ -19,7 +19,7 @@ class UserTest extends TestCase
 
     public function testDomains()
     {
-        $response = $this->call('GET', '/');
+        $response = $this->call('GET', '/domains');
 
         $this->assertEquals(200, $response->status());
     }

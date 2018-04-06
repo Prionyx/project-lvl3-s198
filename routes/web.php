@@ -11,9 +11,7 @@
 |
 */
 
-$router->get('/', ['as' => 'home', function () {
-    return view('home');
-}]);
+$router->get('/', ['as' => 'home', 'uses' => 'UserController@showHome']);
 
 $router->get('/domains/{id}', ['as' => 'domain', 'uses' => 'UserController@showNew']);
 

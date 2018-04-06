@@ -8,6 +8,11 @@ use Validator;
 
 class UserController extends Controller
 {
+    public function showHome()
+    {
+        return view('home');
+    }
+
     public function showNew($id)
     {
         $domain = DB::table('domains')->where('id', $id)->first();
@@ -16,7 +21,7 @@ class UserController extends Controller
 
     public function show()
     {
-        $domains = DB::table('domains')->paginate(10);
+        $domains = DB::table('domains')->paginate(5);
 
         return view('domains', ['domains' => $domains]);
     }

@@ -12,15 +12,14 @@ class DomainsTest extends TestCase
 
     public function testHome()
     {
-        //$response = $this->call('GET', '/');
+        $response = $this->get(route('home'));
 
-        $response = $this->get('/');
         $this->assertResponseOk();
     }
 
     public function testDomains()
     {
-        $response = $this->get('/domains');
+        $response = $this->get(route('domains'));
 
         $this->assertResponseOk();
     }

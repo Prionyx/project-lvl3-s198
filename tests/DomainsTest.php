@@ -12,16 +12,17 @@ class DomainsTest extends TestCase
 
     public function testHome()
     {
-        $response = $this->call('GET', '/');
+        //$response = $this->call('GET', '/');
 
-        $this->assertEquals(200, $response->status());
+        $response = $this->get('/');
+        $this->assertResponseOk();
     }
 
     public function testDomains()
     {
-        $response = $this->call('GET', '/domains');
+        $response = $this->get('/domains');
 
-        $this->assertEquals(200, $response->status());
+        $this->assertResponseOk();
     }
 
     public function testCreate()

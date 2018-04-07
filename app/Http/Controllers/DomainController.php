@@ -42,7 +42,8 @@ class DomainController extends Controller
         $body = ($res->getBody()->getContents());
         $time = date('Y-m-d h:i', time());
         $id = DB::table('domains')->insertGetId(
-            ['name' => $url, 'updated_at' => $time, 'created_at' => $time, 'code' => $code, 'content_length' => $contentLength, 'body' => $body]
+            ['name' => $url, 'updated_at' => $time, 'created_at' => $time,
+            'code' => $code, 'content_length' => $contentLength, 'body' => $body]
         );
         /*$id = DB::table('domains')->insertGetId(
             ['name' => $url, 'updated_at' => $time, 'created_at' => $time]

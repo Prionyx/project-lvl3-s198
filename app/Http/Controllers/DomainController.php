@@ -43,7 +43,7 @@ class DomainController extends Controller
         $time = date('Y-m-d h:i', time());
         $id = DB::table('domains')->insertGetId(
             ['name' => $url, 'updated_at' => $time, 'created_at' => $time,
-            'code' => $code, 'content_length' => $contentLength, 'body' => utf8_encode($body)]
+            'code' => $code, 'content_length' => $contentLength, 'body' => ($body)]
         );
 
         return redirect()->route('domain', ['id' => $id]);

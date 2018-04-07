@@ -11,9 +11,9 @@
 |
 */
 
-$router->get('/', ['as' => 'home', 'uses' => 'DomainController@showHome']);
+$router->get('/', ['as' => 'home', 'uses' => 'DomainController@index']);
 
-$router->get('/domains/{id}', ['as' => 'domain', 'uses' => 'DomainController@showNew']);
+$router->get('/domains/{id}', ['as' => 'domain', 'uses' => 'DomainController@show']);
 
 $router->get('/domains', ['as' => 'domains', 'uses' => 'DomainController@showAll']);
 

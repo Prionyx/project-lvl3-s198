@@ -10,12 +10,12 @@ use DiDom\Document;
 
 class DomainController extends Controller
 {
-    public function showHome()
+    public function index()
     {
         return view('home');
     }
 
-    public function showNew($id)
+    public function show($id)
     {
         $domain = DB::table('domains')->where('id', $id)->first();
         
@@ -44,9 +44,9 @@ class DomainController extends Controller
         $body = ($res->getBody()->getContents());
 
         $document = new Document($body);
-        $keywords = ($document->first('meta[name=keywords]'));
+        $keywords = $document->first('meta[name=keywords]');
         $keywordsContent = $keywords ? $keywords->getAttribute('content') : null;
-        $description = ($document->first('meta[name=description]'));
+        $description = $document->first('meta[name=description]');
         $descriptionContent = $description ? $description->getAttribute('content') : null;
         $h1 = $document->first('h1');
         $h1Content = $h1 ? $h1->text() : null;

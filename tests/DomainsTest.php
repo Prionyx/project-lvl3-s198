@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 
@@ -12,14 +13,14 @@ class DomainsTest extends TestCase
 
     public function testHome()
     {
-        $response = $this->get(route('home'));
+        $this->get(route('home'));
 
         $this->assertResponseOk();
     }
 
     public function testDomains()
     {
-        $response = $this->get(route('domains'));
+        $this->get(route('domains'));
 
         $this->assertResponseOk();
     }
@@ -27,7 +28,9 @@ class DomainsTest extends TestCase
     public function testCreate()
     {
         $url = 'http://www.google.com';
-        $this->post(route('domains', ['url' => $url]));
+        $path = route('domains');
+        $this->post($path, ['url' => $url]);
+        $this->assertResponseStatus(302);
         $this->seeInDatabase('domains', ['name' => $url]);
     }
 }

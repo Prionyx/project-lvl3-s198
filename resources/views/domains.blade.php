@@ -19,7 +19,7 @@
                 @foreach ($domains as $domain)
                     <tr>
                         <th scope="row">{{ $domain->id }}</th>
-                        <th><a href="{{ $domain->name }}">{{ $domain->name }}</a></th>
+                        <th><a href="{{ route('domain', [ 'id' => $domain->id]) }}">{{ $domain->name }}</a></th>
                         <th>{{ $domain->updated_at }}</th>
                         <th>{{ $domain->created_at }}</th>
                         <th>{{ $domain->code }}</th>

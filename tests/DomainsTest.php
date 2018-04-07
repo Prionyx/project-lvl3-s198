@@ -26,8 +26,8 @@ class DomainsTest extends TestCase
 
     public function testCreate()
     {
-        $this->post(route('domains', ['url' => 'http://google.com/']));
-
-        $this->seeInDatabase($this->table, ['name' => 'http://google.com/']);
+        $url = 'http://www.google.com';
+        $this->post(route('domains'), ['url' => $url]);
+        $this->seeInDatabase('domains', ['name' => $url]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Validator;
+use GuzzleHttp\Client;
 
 class DomainController extends Controller
 {
@@ -32,11 +33,21 @@ class DomainController extends Controller
             'url' => 'required|url'
         ]);
 
+        $client = new Client();
+
         $url = $request->input('url');
+        $res = $client->request('GET', $url);
+        $code = $res->getStatusCode();
+        $contentLength = !empty($res->getHeader('Content-Length')) ? $res->getHeader('Content-Length')[0] : 0;
+        $body = ($res->getBody()->getContents());
         $time = date('Y-m-d h:i', time());
         $id = DB::table('domains')->insertGetId(
-            ['name' => $url, 'updated_at' => $time, 'created_at' => $time]
+            ['name' => $url, 'updated_at' => $time, 'created_at' => $time, 'code' => $code, 'content_length' => $contentLength, 'body' => $body]
         );
+        /*$id = DB::table('domains')->insertGetId(
+            ['name' => $url, 'updated_at' => $time, 'created_at' => $time]
+        );*/
+
         return redirect()->route('domain', ['id' => $id]);
     }
 }

@@ -31,9 +31,15 @@ class DomainController extends Controller
 
     public function create(Request $request)
     {
-        $this->validate($request, [
+        $rules = ['url' => 'required|url'];
+
+        $validator = Validator::make($request->all(), [
             'url' => 'required|url'
         ]);
+        if ($validator->fails()) {
+            $errors = $validator ? $validator->errors()->all() : [];
+            return view('home', ['errors' => $errors]);
+        }
 
         $client = new Client();
 
